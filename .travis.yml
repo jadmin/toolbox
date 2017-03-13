@@ -7,6 +7,7 @@ jdk:
 
 script: mvn clean package -Dmaven.javadoc.skip=true -Dgpg.passphrase=zqjkxdqkkk831
 
+
 notifications:  
   email:  
     recipients:  
