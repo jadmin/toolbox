@@ -1,1 +1,1 @@
-# toolbox ![](https://travis-ci.org/jadmin/toolbox.svg?branch=master)
+# toolbox [![](https://travis-ci.org/jadmin/toolbox.svg?branch=master)](https://travis-ci.org/jadmin/toolbox)
