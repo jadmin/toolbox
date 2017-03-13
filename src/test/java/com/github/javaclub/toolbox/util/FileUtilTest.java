@@ -12,11 +12,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.github.javaclub.toolbox.beans.User;
-import com.github.javaclub.toolbox.util.FileUtil;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import com.github.javaclub.toolbox.beans.User;
+
+
 
 /**
  * FileUtilTest
@@ -38,15 +39,15 @@ public class FileUtilTest {
 		System.out.println(str);
 		
 		str = FileUtil.getClassPath();
-		System.out.println(str);
+		System.out.println("\nclasspath=" + str);
 		
 		File file = FileUtil.getClassesFile(user);
-		System.out.println(file);
+		System.out.println("\nclassfiles=" + file);
 	}
 	
 	@Test
 	public void testStream() throws IOException {
-		InputStream stream = FileUtil.stream("就�?萨发生ff");
+		InputStream stream = FileUtil.stream("THis istext");
 		
 		String txt = FileUtil.readAsString(stream);
 		System.out.println(txt);
@@ -56,6 +57,7 @@ public class FileUtilTest {
 	public void testGetClasspathFile() {
 		File file = FileUtil.getClasspathFile("conf/props/test.properties");
 		System.out.println(file.exists());
+		System.out.println(file.getAbsolutePath());
 	}
 	
 	

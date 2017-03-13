@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 
 /**
@@ -57,12 +58,12 @@ public class ApplicationContextTest {
 	@Test
 	public void testSendMail2() {
 		MailMessage message = new MailMessage("kkaa@126.com", new String[] {
-				"etxp@qq.com", "756382030@qq.com", "115143140@qq.com"}, "Spring邮件发�?测试GBK",
+				"etxp@qq.com", "756382030@qq.com", "115143140@qq.com"}, "Spring邮件发送测试GBK",
 				"下午好，Hello,您好");
 		message.setCc("jsoft@126.com");
-		message.addAttach("txt.txt", new FileSystemResource("C:/Documents and Settings/hongyuan.czq/桌面/txt.txt"))
-			.addAttach("java.java", new FileSystemResource("C:/Documents and Settings/hongyuan.czq/桌面/java.java"))
-			.addAttach("xml.xml", new FileSystemResource("C:/Documents and Settings/hongyuan.czq/桌面/xml.xml"));
+		message.addAttach("txt.txt", new ClassPathResource("work/files/txt.txt"))
+			.addAttach("java.java", new ClassPathResource("work/files/java.java"))
+			.addAttach("xml.xml", new ClassPathResource("work/files/xml.xml"));
 		mailSender.send(message);
 	}
 

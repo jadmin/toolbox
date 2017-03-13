@@ -12,7 +12,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.github.javaclub.toolbox.Constants;
 import com.github.javaclub.toolbox.core.Strings;
+import com.github.javaclub.toolbox.util.FileUtil;
 
 /**
  * desc
@@ -21,105 +23,73 @@ import com.github.javaclub.toolbox.core.Strings;
  * @version $Id: UrlFetcherTest.java,v 1.1 2010/06/24 16:51:00 gerald.chen Exp $
  */
 public class UrlFetcherTest {
+	
+	static String DEST_FILE_PATH = Constants.WINDOWS ? "D:/temp/digfile" : "/temp/digfile";
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		FileUtil.createDir(DEST_FILE_PATH);
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		Thread.sleep(100 * 1000L);
 	}
 
 	@Test
 	public void testFetch() throws Exception {
-		String dest = "D:/temp/digfile";
 		String image = "http://www.apache.org/images/asf_logo_wide.gif";
-		File file = UrlFetcher.fetch(image, dest, false);
+		File file = UrlFetcher.fetch(image, DEST_FILE_PATH, false);
 		System.out.println(file.getAbsolutePath());
+		Thread.sleep(8000L);
 	}
 
 	@Test
-	public void testMultiFetch() {
+	public void testMultiFetch() throws Exception {
 		String[] urls = new String[] {
 			"http://www.apache.org/images/asf_logo_wide.gif",
 			"http://www.apache.org/images/asf_logo_wide.gif",
 			"http://www.apache.org/images/asf_logo_wide.gif",
 			"http://www.apache.org/images/asf_logo_wide.gif",
 		};
-		String dest = "D:/temp/digfile";
-		UrlFetcher.multiFetch(urls, dest, false);
+		UrlFetcher.multiFetch(urls, DEST_FILE_PATH, false);
 		// 设置断点，debug看效果
 		System.out.println("kkk");
+		Thread.sleep(15000L);
 	}
 	
 	@Test
-	public void testMultiFetch2() {
-		String source = DownloadUtil.download("http://cms.17ext.com/extpic/2009/0504/ext-icon-300.html").getText();
+	public void testMultiFetch2() throws Exception  {
+		/*String source = DownloadUtil.download("http://www.apache.org").getText();
 		String regex = "/uploads/allimg/090504/.*gif";
 		String[] links = Strings.multiFind(source, regex);
 		for (int i = 0; i < links.length; i++) {
 			links[i] = "http://cms.17ext.com" + links[i];
 		}
 		String dest = "D:/temp/digfile/ext";
-		UrlFetcher.multiFetch(links, dest, false);
+		UrlFetcher.multiFetch(links, dest, false);*/
 		// 设置断点，debug看效果
 		System.out.println("kkk");
 	}
 	
 	@Test
-	public void testFetchBaiduHimage() {
+	public void testFetchBaiduHimage() throws Exception  {
 		
 		String from = "http://img.baidu.com/hi/";
-		// ldw
-		String dest = "D:/tmp/digfile/baidu/hi/ldw";
-		/*String[] ldw = new String[100];
-		for (int i = 0; i < 100; i++) {
-			ldw[i] = from + "ldw/w_" + StringUtil.alignRight(String.valueOf(i), 4, '0') + ".gif";
-		}
-		UrlFetcher.multiFetch(ldw, dest, true);*/
-		
-		// tsj
-		/*dest = "D:/tmp/digfile/baidu/hi/tsj";
-		String[] tsj = new String[100];
-		for (int i = 0; i < 100; i++) {
-			tsj[i] = from + "tsj/t_" + StringUtil.alignRight(String.valueOf(i), 4, '0') + ".gif";
-		}
-		UrlFetcher.multiFetch(tsj, dest, true);*/
-		
-		// bobo
-		/*dest = "D:/tmp/digfile/baidu/hi/bobo";
-		String[] bobo = new String[100];
-		for (int i = 0; i < 100; i++) {
-			bobo[i] = from + "bobo/B_" + StringUtil.alignRight(String.valueOf(i), 4, '0') + ".gif";
-		}
-		UrlFetcher.multiFetch(bobo, dest, true);*/
 		
 		// babycat
-		dest = "D:/tmp/digfile/baidu/hi/jx2";
+		String  dest = Constants.WINDOWS ? "D:/temp/digfile/baidu" : "/temp/digfile/baidu";
+		FileUtil.createDir(dest);
+		
 		String[] babycat = new String[100];
 		for (int i = 0; i < 100; i++) {
 			babycat[i] = from + "jx2/j_" + Strings.alignRight(String.valueOf(i), 4, '0') + ".gif";
 		}
 		UrlFetcher.multiFetch(babycat, dest, true);
 		
-		// face
-		/*dest = "D:/tmp/digfile/baidu/hi/face";
-		String[] face = new String[99];
-		for (int i = 0; i < 99; i++) {
-			face[i] = from + "face/i_f" + StringUtil.alignRight(String.valueOf(i), 2, '0') + ".gif";
-		}
-		UrlFetcher.multiFetch(face, dest, true);
-		
-		// youa
-		dest = "D:/tmp/digfile/baidu/hi/youa";
-		String[] youa = new String[100];
-		for (int i = 0; i < 99; i++) {
-			youa[i] = from + "youa/y_" + StringUtil.alignRight(String.valueOf(i), 4, '0') + ".gif";
-		}
-		UrlFetcher.multiFetch(youa, dest, true);*/
-		
 		// 设置断点，debug看效果
 		System.out.println("kkk");
+		Thread.sleep(30000L);
 	}
 
 

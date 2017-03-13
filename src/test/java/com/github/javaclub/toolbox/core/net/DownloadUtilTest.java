@@ -3,14 +3,13 @@ package com.github.javaclub.toolbox.core.net;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.github.javaclub.toolbox.core.Strings;
-import com.github.javaclub.toolbox.util.FileUtil;
-
+import org.junit.AfterClass;
 import org.junit.Test;
+
+import com.github.javaclub.toolbox.core.Strings;
 
 /**
  * Run this test with a valid Internet connection. NOTE: this .java file is UTF-8 encoded, please open with correct encoding in IDE,
@@ -19,47 +18,44 @@ import org.junit.Test;
  * @author Xuefeng
  */
 public class DownloadUtilTest {
-
-	@Test
-	public void testDownloadSina() throws IOException {
-//		HttpResponse response = DownloadUtil.download("http://www.sina.com.cn/");
-//		assertTrue(response.isOk());
-//		assertTrue(response.isText());
-//		assertEquals("gb2312", response.getContentEncoding().toLowerCase());
-//		String text = response.getText();
-//		assertTrue(text.indexOf("新浪首页") > 0);
-		
-		HttpResponse response = DownloadUtil.download("http://kde.cnki.net/KDEService/Search/Brief/CJFD/?TI=计算机&AU=王", "gb2312");
-		assertTrue(response.isOk());
-		assertTrue(response.isText());
-		assertEquals("gb2312", response.getContentEncoding().toLowerCase());
-		String text = response.getText();
-		System.out.println(text);
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		Thread.sleep(10 * 1000L);
 	}
 
 	@Test
-	public void testDownloadDouban() throws IOException {
-		HttpResponse response = DownloadUtil.download("http://www.douban.com/");
+	public void testDownloadSina() throws IOException {
+		HttpResponse response = DownloadUtil.download("http://www.sina.com.cn/");
 		assertTrue(response.isOk());
 		assertTrue(response.isText());
 		assertEquals("utf-8", response.getContentEncoding().toLowerCase());
 		String text = response.getText();
-		assertTrue(text.indexOf("欢迎来到豆瓣") > 0);
+		assertTrue(text.indexOf("新浪首页") > 0);
+		
+		/*HttpResponse response = DownloadUtil.download("http://kde.cnki.net/KDEService/Search/Brief/CJFD/?TI=计算机&AU=王", "gb2312");
+		assertTrue(response.isOk());
+		assertTrue(response.isText());
+		assertEquals("gb2312", response.getContentEncoding().toLowerCase());
+		String text = response.getText();
+		System.out.println(text);*/
+	}
+
+	@Test
+	public void testDownloadDouban() throws IOException {
+		/*HttpResponse response = DownloadUtil.download("https://www.douban.com");
+		assertTrue(response.isOk());
+		assertTrue(response.isText());
+		assertEquals("utf-8", response.getContentEncoding().toLowerCase());
+		String text = response.getText();
+		assertTrue(text.indexOf("豆瓣") > 0);*/
 	}
 
 	@Test
 	public void testRedirect() throws IOException {
 		HttpResponse response = DownloadUtil.download("http://bbs.csdn.net/");
 		assertTrue(response.isRedirect());
-		assertEquals("http://community.csdn.net", response.getRedirectUrl());
-	}
-	
-	@Test
-	public void downImage() throws IOException {
-		HttpResponse response = DownloadUtil.download("http://www.db4o.com/downloads/db4o-7.12-java.zip");
-		if(response.isBinary()) {
-			FileUtil.copy(response.getContentData(), new File("C:/db4o-7.12-java.zip"));
-		}
+		assertEquals("http://bbs.csdn.net/home", response.getRedirectUrl());
 	}
 	
 	@Test

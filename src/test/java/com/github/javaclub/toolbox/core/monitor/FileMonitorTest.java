@@ -8,6 +8,9 @@
 package com.github.javaclub.toolbox.core.monitor;
 
 import com.github.javaclub.toolbox.core.monitor.FileMonitor;
+import com.github.javaclub.toolbox.util.FileUtil;
+
+import java.io.File;
 
 import org.junit.Test;
 
@@ -21,13 +24,14 @@ public class FileMonitorTest {
 
 	@Test
 	public void test() throws Exception {
-		String filename = "C:/Documents and Settings/Administrator/桌面/txt.txt";
-		String file = "C:/Documents and Settings/Administrator/桌面/file.txt";
+		File file1 = FileUtil.getClasspathFile("work/files/file_one.txt");
+		File file2 = FileUtil.getClasspathFile("work/files/file_anothoer.txt");
+		
 		FileMonitor monitor = FileMonitor.getInstance();
 		TxtFileListener listener = new TxtFileListener();
 		
-		monitor.addFileChangeListener(listener, filename, 10 * 1000L);
-		monitor.addFileChangeListener(listener, file, 10 * 1000L);
-		Thread.sleep(24 * 60 * 60 * 1000L);
+		monitor.addFileChangeListener(listener, file1.getAbsolutePath(), 10 * 1000L);
+		monitor.addFileChangeListener(listener, file2.getAbsolutePath(), 10 * 1000L);
+		Thread.sleep(5 * 60 * 1000L);
 	}
 }

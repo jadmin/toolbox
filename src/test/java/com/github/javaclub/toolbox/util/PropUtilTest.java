@@ -7,6 +7,7 @@
 
 package com.github.javaclub.toolbox.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -35,10 +36,10 @@ public class PropUtilTest {
 	
 	@Test
 	public void testSetValue() throws IOException {
-		String filename = "C:/Documents and Settings/Administrator/桌面/test.properties";
-		Properties p = PropUtil.setValue(filename, "+", "val");
+		File file = FileUtil.getClasspathFile("work/files/prop.properties");
+		Properties p = PropUtil.setValue(file.getAbsolutePath(), "addone", "addval");
 		p.list(System.out);
-		System.out.println(p.getProperty("user.home"));
+		System.out.println(p.getProperty("addone"));
 	}
 
 }
