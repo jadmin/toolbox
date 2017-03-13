@@ -120,7 +120,7 @@ class Fresher implements Runnable {
 		// String url = "http://www.mgow.net/plus.php?type=fixurl&idx=";// 秒购网
 		String url = "http://www.0460.com/view/134907.html"; // 王牌嗨购
 		HttpResponse response = null;
-		for (int i = 1000; i < 10000000; i++) {
+		for (int i = 1000; i < 1010; i++) {
 			response = DownloadUtil.download(url + String.valueOf(i));
 			if(response.isText()) {
 				System.out.println(response.getText());

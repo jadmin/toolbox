@@ -11,10 +11,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 
+import com.github.javaclub.toolbox.Constants;
 import com.github.javaclub.toolbox.core.AbstractMethodExecutor;
 import com.github.javaclub.toolbox.util.FileUtil;
 import com.github.javaclub.toolbox.util.UuidUtil;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -24,11 +27,23 @@ import org.junit.Test;
  * @version $Id: AbstractMethodExecutorTest.java 172 2011-07-23 10:42:48Z gerald.chen.hz@gmail.com $
  */
 public class AbstractMethodExecutorTest {
+	
+	static String DEST_FILE_PATH = Constants.WINDOWS ? "D:/temp/data/" : "/temp/data/";
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		FileUtil.createDir(DEST_FILE_PATH);
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		Thread.sleep(100 * 1000L);
+	}
 
 	
 	@Test
 	public void testDemo() {
-		File file = new File("d:/temp/data/");
+		File file = new File(DEST_FILE_PATH);
 		CreateFileTask download = new CreateFileTask(file, 80);
 		download.doTask();
 		System.out.println(download.getResult());
@@ -37,6 +52,8 @@ public class AbstractMethodExecutorTest {
 }
 
 class CreateFileTask extends AbstractMethodExecutor<File, MessageResult> {
+	
+	static String DEST_FILE_PATH = Constants.WINDOWS ? "D:/temp/data/" : "/temp/data/";
 
 	public CreateFileTask() {
 		super();
@@ -54,7 +71,7 @@ class CreateFileTask extends AbstractMethodExecutor<File, MessageResult> {
 
 	public void execute() {
 		try {
-			FileUtil.createFile("d:/temp/data/" + UuidUtil.newUUID() + ".txt");
+			FileUtil.createFile(DEST_FILE_PATH + UuidUtil.newUUID() + ".txt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
