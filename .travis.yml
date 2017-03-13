@@ -5,7 +5,7 @@ jdk:
 #  - openjdk7
    - openjdk6
 
-script: mvn clean package -Dgpg.skip=true
+script: mvn clean package -Pdev -Dmaven.test.skip=true -DdownloadSources=true -Dgpg.skip=true
 
 notifications:  
   email:  
