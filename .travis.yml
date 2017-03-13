@@ -5,7 +5,7 @@ jdk:
 #  - openjdk7
    - openjdk6
 
-script: mvn clean package -Dmaven.javadoc.skip=true -Dgpg.passphrase=zqjkxdqkkk831
+script: mvn clean package -Dmaven.javadoc.skip=true -DdownloadSources=true 
 
 
 notifications:  
