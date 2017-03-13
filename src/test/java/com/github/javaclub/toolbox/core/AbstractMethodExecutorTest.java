@@ -37,7 +37,7 @@ public class AbstractMethodExecutorTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Thread.sleep(100 * 1000L);
+		Thread.sleep(10 * 1000L);
 	}
 
 	

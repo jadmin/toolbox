@@ -33,7 +33,7 @@ public class RFBPTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Thread.sleep(100 * 1000L);
+		Thread.sleep(60 * 1000L);
 	}
 
 	@Test

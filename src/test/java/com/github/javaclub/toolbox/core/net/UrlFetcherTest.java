@@ -33,7 +33,7 @@ public class UrlFetcherTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		Thread.sleep(100 * 1000L);
+		Thread.sleep(30 * 1000L);
 	}
 
 	@Test
