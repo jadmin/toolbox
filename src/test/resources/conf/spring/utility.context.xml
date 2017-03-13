@@ -14,7 +14,7 @@
 	
 	<bean id="logger" class="com.github.javaclub.toolbox.core.Log">
 		<property name="timeFormat" value="yyyy/MM/dd HH:mm:ss,SSS" />
-		<property name="logPath" value="d:/temp/log/" />
+		<property name="logPath" value="/temp/logs/" />
 	</bean>
 
 	<bean id="mailSender" class="com.github.javaclub.toolbox.core.mail.DefaultMailSender">
