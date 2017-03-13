@@ -52,18 +52,6 @@
 		<author.email>gerald.chen.hz@gmail.com</author.email>
 	</properties>
 
-	<profiles>
-		<profile>
-			<id>sign</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<gpg.passphrase>password</gpg.passphrase>
-			</properties>
-		</profile>
-	</profiles>
-	
 	<build>
 		<plugins>
 			<plugin>
