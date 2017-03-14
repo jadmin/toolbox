@@ -111,4 +111,7 @@ public final class Constants implements Serializable {
 	/** 客户端表单中验证码的name值 */
 	public static final String KEY_CLIENT_RANDOM_NUM = "rnum";
 
+	public static void main(String[] args) {
+		System.out.println(OS_NAME);
+	}
 }
