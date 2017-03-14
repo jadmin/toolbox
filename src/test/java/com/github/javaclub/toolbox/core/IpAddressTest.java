@@ -5,7 +5,7 @@
  *
  */
 
-package com.github.javaclub.toolbox.core.ip;
+package com.github.javaclub.toolbox.core;
 
 import org.junit.After;
 import org.junit.Before;
@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.github.javaclub.toolbox.core.IPAddress;
 import com.github.javaclub.toolbox.util.SpringContextUtil;
 
 /**
@@ -64,6 +65,10 @@ public class IpAddressTest {
 		System.out.println(ipAddress.getArea("220.181.28.50"));
 		System.out.println(ipAddress.getCountry("10.9.7.11") + "--->"
 				+ ipAddress.getArea("10.9.7.11"));
+		
+		String ip = "203.208.33.100";
+		IPAddress.IPLocation ipLocation = ipAddress.getIPLocation(ip);
+		System.out.println(ipLocation);
 	}
 
 }

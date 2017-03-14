@@ -11,8 +11,9 @@ import java.io.IOException;
 import java.util.Map;
 
 import junit.framework.Assert;
+
+import com.github.javaclub.toolbox.core.IPAddress;
 import com.github.javaclub.toolbox.core.PropertySystem;
-import com.github.javaclub.toolbox.core.ip.IPAddress;
 import com.github.javaclub.toolbox.core.mail.DefaultMailSender;
 import com.github.javaclub.toolbox.core.mail.MailMessage;
 import com.github.javaclub.toolbox.id.AbstractIdGenerator;

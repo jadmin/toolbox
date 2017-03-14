@@ -1,4 +1,4 @@
-package com.github.javaclub.toolbox.core.ip;
+package com.github.javaclub.toolbox.core;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.StringTokenizer;
-
-import com.github.javaclub.toolbox.core.PropertySystem;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -67,6 +65,26 @@ public class IPAddress implements InitializingBean {
 		if(!initialized) {
 			init();
 			initialized = true;
+		}
+	}
+	
+	public IPLocation getIPLocation(String ip) {
+		// 检查ip地址文件是否正常
+		if (ipFile == null) {
+			// return LumaQQ.getString("bad.ip.file");
+			return null;
+		}
+		byte[] ipBytes = getIpByteArrayFromString(ip);
+		// 保存ip，转换ip字节数组为字符串形式
+		String ipStr = getIpStringFromBytes(ipBytes);
+		// 先检查cache中是否已经包含有这个ip的结果，没有再搜索文件
+		if (ipCache.containsKey(ipStr)) {
+			IPLocation loc = (IPLocation) ipCache.get(ipStr);
+			return loc;
+		} else {
+			IPLocation loc = getIPLocation(ip);
+			ipCache.put(ipStr, loc.getCopy());
+			return loc;
 		}
 	}
 	
@@ -684,7 +702,7 @@ public class IPAddress implements InitializingBean {
 	 * </pre>
 	 * 
 	 */
-	private class IPLocation {
+	public class IPLocation {
 		
 		public String country;
 
@@ -700,6 +718,36 @@ public class IPAddress implements InitializingBean {
 			ret.area = area;
 			return ret;
 		}
+
+		@Override
+		public String toString() {
+			if(Strings.isBlank(country) && Strings.isBlank(area)) {
+				return "";
+			}
+			return Strings.isBlank(area) ? country : Strings.concat(country, "-", area);
+		}
+		
 	}
 
+	/**
+	 * <p>
+	 * IPEntry [beginIp, endIp, country, area]
+	 * </p>
+	 * 
+	 */
+	private class IPEntry {
+
+		public String beginIp;
+		public String endIp;
+		public String country;
+		public String area;
+
+		/**
+		 * the default constructor.
+		 */
+		public IPEntry() {
+			beginIp = endIp = country = area = "";
+		}
+
+	}
 }
