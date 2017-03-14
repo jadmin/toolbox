@@ -46,7 +46,6 @@ public class AttributeUtil {
 		return sb.toString();
 	}
 	
-	
 	/**
 	 * 通过字符串解析成attributes
 	 * @param str
