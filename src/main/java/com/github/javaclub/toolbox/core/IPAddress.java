@@ -7,9 +7,10 @@ import java.nio.ByteOrder;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,7 +40,7 @@ public class IPAddress implements InitializingBean {
 	private static final String IPDATA_FILE_PATH = PropertySystem.getProperty(IPDATA_FILE_KEY, IPDATA_FILE_PATH_DEFALT);
 
 	/** 用来做为cache，查询一个ip时首先查看cache，以减少不必要的重复查找 */
-	private Hashtable<String, IPLocation> ipCache;
+	private Map<String, IPLocation> ipCache;
 
 	/** 随机文件访问类 */
 	private RandomAccessFile ipFile;
@@ -164,7 +165,7 @@ public class IPAddress implements InitializingBean {
 	 * @throws Exception 
 	 */
 	protected void init() throws Exception {
-		ipCache = new Hashtable<String, IPLocation>();
+		ipCache = new ConcurrentHashMap<String, IPLocation>();
 		loc = new IPLocation();
 		buf = new byte[100];
 		b4 = new byte[4];
