@@ -11,6 +11,7 @@ package com.github.javaclub.toolbox.util;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -36,9 +37,9 @@ public class FileUtilTest {
 		User user = new User("Kate", "123456", "Student");
 		
 		String str = FileUtil.getClassesDirectory(user);
-		System.out.println(str);
+		System.out.println("object_dir=" + str);
 		
-		str = FileUtil.getClassPath();
+		str = FileUtil.getAllClasspath();
 		System.out.println("\nclasspath=" + str);
 		
 		File file = FileUtil.getClassesFile(user);
@@ -58,6 +59,21 @@ public class FileUtilTest {
 		File file = FileUtil.getClasspathFile("conf/props/test.properties");
 		System.out.println(file.exists());
 		System.out.println(file.getAbsolutePath());
+	}
+	
+	@Test
+	public void test_列出打印目录树() {
+		File dir = FileUtil.getClasspathFile("work");
+		FileUtil.tree(dir.getParentFile());
+	}
+	
+	@Test
+	public void testGetCurrentRootClasspath() {
+		URL url = Thread.currentThread().getContextClassLoader ().getResource("");
+		System.out.println(url);
+		
+		String path = FileUtil.getCurrentRootClasspath();
+		System.out.println(path);
 	}
 	
 	

@@ -968,10 +968,6 @@ public class FileUtil {
 		}
 	}
 
-	public static String getClassPath() {
-		return System.getProperties().getProperty("java.class.path", "");
-	}
-
 	public static boolean compareBytes(byte buf1[], byte buf2[], int count) {
 		for (int i = 0; i < count; i++) {
 			if (buf1[i] != buf2[i]) {
@@ -1088,43 +1084,6 @@ public class FileUtil {
 		return name.substring(index + 1);
 	}
 
-	public static File getClassesFile(String fileName) {
-		String path = getClassPath();
-		for (StringTokenizer tokenizer = new StringTokenizer(path, File.pathSeparator); tokenizer
-				.hasMoreTokens();) {
-			path = tokenizer.nextToken();
-			File file = new File(String.valueOf(String.valueOf((new StringBuffer(String
-					.valueOf(String.valueOf(path)))).append(File.separator).append(
-					fileName))));
-			if (file.exists()) {
-				return file;
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * 根据一个java对象获取该对象的class文件
-	 * 
-	 * @param object
-	 * @return
-	 */
-	public static File getClassesFile(Object object) {
-		String name = object.getClass().getName().replace('.', File.separatorChar);
-		name = String.valueOf(String.valueOf(name)).concat(".class");
-		return getClassesFile(name);
-	}
-
-	/**
-	 * 根据一个java对象获取该对象的class文件所在目录的路径
-	 * 
-	 * @param object
-	 * @return
-	 */
-	public static String getClassesDirectory(Object object) {
-		return getClassesFile(object).getParent();
-	}
-	
 	/**
 	 * 根据一段文本模拟出一个输入流对象
 	 * 
@@ -1241,6 +1200,21 @@ public class FileUtil {
 		}
 	}
 	
+	public static String getAllClasspath() {
+		return System.getProperties().getProperty("java.class.path", "");
+	}
+	
+	/**
+	 * 取当前classpath的根路径
+	 *
+	 * @return 当前classpath的根路径
+	 */
+	public static String getCurrentRootClasspath() {
+		URL url = ObjectUtil.getDefaultClassLoader().getResource("");
+		File file = toFile(url);
+		return (null == file ? "" : file.getAbsolutePath());
+	}
+	
 	public static File getClasspathFile(String classpath) {
 		URL url = ObjectUtil.getDefaultClassLoader().getResource(classpath);
 		if (url == null) {
@@ -1254,7 +1228,43 @@ public class FileUtil {
 		}
 		return toFile(url);
 	}
+	
+	public static File getClassesFile(String fileName) {
+		String path = getAllClasspath();
+		for (StringTokenizer tokenizer = new StringTokenizer(path, File.pathSeparator); tokenizer
+				.hasMoreTokens();) {
+			path = tokenizer.nextToken();
+			File file = new File(String.valueOf(String.valueOf((new StringBuffer(String
+					.valueOf(String.valueOf(path)))).append(File.separator).append(
+					fileName))));
+			if (file.exists()) {
+				return file;
+			}
+		}
+		return null;
+	}
 
+	/**
+	 * 根据一个java对象获取该对象的class文件
+	 * 
+	 * @param object
+	 * @return
+	 */
+	public static File getClassesFile(Object object) {
+		String name = object.getClass().getName().replace('.', File.separatorChar);
+		name = String.valueOf(String.valueOf(name)).concat(".class");
+		return getClassesFile(name);
+	}
+
+	/**
+	 * 根据一个java对象获取该对象的class文件所在目录的路径
+	 * 
+	 * @param object
+	 * @return
+	 */
+	public static String getClassesDirectory(Object object) {
+		return getClassesFile(object).getParent();
+	}
 
 	public static void main(String[] args) throws IOException {
 		File file = new File("C:/Documents and Settings/jadmin/桌面/新建 文本文档.txt");
