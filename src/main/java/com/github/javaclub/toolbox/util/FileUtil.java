@@ -32,7 +32,6 @@ import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,19 +41,22 @@ import java.util.zip.ZipFile;
 
 import javax.imageio.ImageIO;
 
-import com.github.javaclub.toolbox.core.JRuntimeException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+import com.github.javaclub.toolbox.core.JRuntimeException;
+import com.github.javaclub.toolbox.id.UniqueId;
+
 /**
  * 文件操作处理辅助工具.
  * 
- * @author <a href="mailto:gerald.chen@qq.com">Gerald Chen</a>
+ * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
  */
 public class FileUtil {
+	
+	protected static final Log LOG = LogFactory.getLog(FileUtil.class);
 
 	/** 拷贝文件时，一次读取流的字节数8KB */
 	private static final int DEFAULT_BUFFER_SIZE = 1024 * 8;
@@ -67,10 +69,7 @@ public class FileUtil {
 	/** File.separator */
 	public static final String FS = File.separator;
 	
-	/** The first filename suffix index */
-	public static long fileCode = 0;
-
-	protected static final Log LOG = LogFactory.getLog(FileUtil.class);
+	
 
 	private FileUtil() {
 
@@ -208,7 +207,6 @@ public class FileUtil {
 				}
 			} else {
 				if(file.isDirectory()) {
-					// TODO 效率有待提高
 					File[] filtered = listTree(file, fileFilter);
 					if(filtered.length > 0) {
 						File dir = createDir(new File(targetDir, file.getName()));
@@ -512,10 +510,8 @@ public class FileUtil {
 	 *
 	 * @return a uniqueness filename
 	 */
-	public static synchronized String nextFilename() {
-		fileCode += 1;
-		String code = String.valueOf(fileCode);
-		return DateUtil.getFormat(new Date(), "yyyyMMddHHmmss") + code;
+	public static String nextFilename() {
+		return String.valueOf(UniqueId.getInstance().getUniqTime());
 	}
 
 	public static File[] listTree(File directory, FileFilter fileFilter) {
@@ -772,7 +768,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * desc
+	 * 往文件追加文本内容
 	 *
 	 * @param file
 	 * @param encoding

@@ -34,9 +34,8 @@ public class UniqueIdTest {
 	}
 
 	@After
-	public void destroy() {
-		db.clear();
-		db = null;
+	public void destroy() throws Exception {
+		Thread.sleep(30000L);
 	}
 	
 	@Test
