@@ -54,6 +54,18 @@ public class IpAddressTest {
 		
 		String area = ipAddress.getArea(ips);
 		System.out.println(area);
+		
+		System.out.println(ipAddress.getCountry("220.181.6.6"));
+		System.out.println(ipAddress.getCountry("202.101.172.35") + " ---> "
+				+ ipAddress.getArea("202.101.172.35"));
+		System.out.println(ipAddress.getCountry("64.233.167.99") + " ---> "
+				+ ipAddress.getArea("64.233.167.99"));
+		System.out.println(ipAddress.getCountry("203.208.33.100") + " ---> "
+				+ ipAddress.getArea("203.208.33.100"));
+		System.out.println(ipAddress.getCountry("127.0.0.1"));
+		System.out.println(ipAddress.getArea("220.181.28.50"));
+		System.out.println(ipAddress.getCountry("10.9.7.11") + "--->"
+				+ ipAddress.getArea("10.9.7.11"));
 	}
 
 }
