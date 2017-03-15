@@ -10,13 +10,11 @@ package com.github.javaclub.toolbox.id;
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.Assert;
-
-import com.github.javaclub.toolbox.id.UniqueId;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import junit.framework.Assert;
 
 /**
  * UniqueIdTest
@@ -55,8 +53,10 @@ public class UniqueIdTest {
 		}
 		System.out.println();
 	}
-
+	
 }
+
+
 
 class GetCustomId implements Runnable {
 	
