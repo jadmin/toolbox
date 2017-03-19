@@ -8,11 +8,12 @@
 package com.github.javaclub.toolbox.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * MapUtil
@@ -46,5 +47,26 @@ public abstract class MapUtil {
 		result.add(values);
 
 		return result;
+	}
+	
+	/**
+	 * A fast way to generate java.util.Map
+	 */
+	public static Map generateMap(Object ... objs) {
+		AssertUtil.notNull(objs, "The parameter objs should not be null");
+		AssertUtil.isTrue(objs.length % 2 == 0, "The parameter objs array length must be even number.");
+		Map map = new HashMap();
+		for (int i = 0; i < objs.length; i++) {
+			if(i % 2 == 0) {
+				continue;
+			}
+			map.put(objs[i-1], objs[i]);
+		}
+		return map;
+	}
+	
+	public static void main(String[] args) {
+		Map<String, String> map = (Map<String, String>) generateMap("age", 28, "name", "Kate", "job", "engnieer");
+		System.out.println(map);
 	}
 }
