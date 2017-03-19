@@ -9,6 +9,9 @@ package com.github.javaclub.toolbox.core;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 /**
@@ -32,6 +35,23 @@ public class MessagesTest {
 		String target = Messages.format("Hi, Versy {}", "Nice");
 		String expect = "Hi, Versy Nice";
 		assertTrue(target.equals(expect));
+	}
+	
+	@Test
+	public void testFormat_2() {
+		StringBuffer sbf = new StringBuffer("I am ");
+		for (int i = 0; i < 100000; i++) {
+			sbf.append("{} - ");
+		}
+		
+		List<String> list = new ArrayList<String>();
+		for (int i = 0; i < 100000; i++) {
+			list.add(Strings.random(10));
+		}
+		long start = System.currentTimeMillis();
+		Messages.format(sbf.toString(), list.toArray(new String[0]));
+		long end = System.currentTimeMillis();
+		System.out.println("Time Cost => " + (end - start));
 	}
 
 }

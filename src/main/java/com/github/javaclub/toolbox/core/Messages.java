@@ -117,7 +117,7 @@ public class Messages {
 	 * @param argArray An array of arguments to be substituted in place of formatting anchors
 	 * @return The formatted message
 	 */
-	public final static String format(final String messagePattern, final Object[] argArray) {
+	public final static String format(final String messagePattern, final Object ... argArray) {
 		if (messagePattern == null) {
 			return null;
 		}
