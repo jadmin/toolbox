@@ -83,6 +83,8 @@ public final class Constants implements Serializable {
 	 * <tt>-1</tt> when an item is not found.
 	 */
 	public static final int NOT_FOUND = -1;
+	
+	public static final int CPU_CORES = Runtime.getRuntime().availableProcessors();
 
 	public static final String EMPTY_STRING = "";
 	public static final String SPACE = " ";
@@ -113,5 +115,6 @@ public final class Constants implements Serializable {
 
 	public static void main(String[] args) {
 		System.out.println(OS_NAME);
+		System.out.println(CPU_CORES);
 	}
 }
