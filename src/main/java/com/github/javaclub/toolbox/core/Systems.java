@@ -18,6 +18,7 @@ import com.github.javaclub.toolbox.Constants;
 public final class Systems {
 	
 	private  Systems() {
+		throw new InstantiationError( "Must not instantiate this class" );
 	}
 	
 	/**
