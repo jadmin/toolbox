@@ -5,3 +5,5 @@
 	<artifactId>toolbox</artifactId>
 	<version>1.0.4</version>
 </dependency>
+
+test
