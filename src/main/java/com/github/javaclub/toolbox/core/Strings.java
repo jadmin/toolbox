@@ -14,9 +14,12 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +31,7 @@ import com.github.javaclub.toolbox.util.ObjectUtil;
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
  * @version $Id: Strings.java 260 2011-08-26 07:37:31Z gerald.chen.hz $
  */
-public abstract class Strings {
+public final class Strings {
 
 	private static final String CHARS = "AcdeopqrsSTUVWCD4abXYZ01IJKLlm2B3fghijk678EFGHnt5MNOPQR9uvwxyz";
 	
@@ -1120,6 +1123,47 @@ public abstract class Strings {
 		}
 		
 		return (result.toString());
+	}
+	
+	public static MapJson createMapJson(String key, String value) {
+		return new MapJson(key, value);
+	}
+	
+	static class MapJson {
+		
+		private ConcurrentMap<String, String> nodeMap;
+		
+		public MapJson() {
+			nodeMap = new ConcurrentHashMap<String, String>();
+		}
+		
+		public MapJson(String key, String value) {
+			if(null == nodeMap) {
+				nodeMap = new ConcurrentHashMap<String, String>();
+			}
+			nodeMap.put(key, value);
+		}
+		
+		public MapJson entry(String key, String value) {
+			nodeMap.put(key, value);
+			return this;
+		}
+
+		@Override
+		public String toString() {
+			StringBuilder sbf = new StringBuilder();
+			for (Map.Entry<String, String> entry : nodeMap.entrySet()) {
+				sbf.append("\"" + entry.getKey() + "\"")
+					.append(":")
+					.append("\"" + entry.getValue() + "\"")
+					.append(",");
+			}
+			if(sbf.toString().endsWith(",")) {
+				sbf.deleteCharAt(sbf.length() - 1);
+			}
+			return "{" + sbf.toString() + "}";
+		}
+		
 	}
 	
     /**
