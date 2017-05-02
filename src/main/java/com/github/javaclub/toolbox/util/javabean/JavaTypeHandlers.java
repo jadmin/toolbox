@@ -29,7 +29,6 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * The Java data type handler.
- * 
  */
 @SuppressWarnings("unchecked")
 public class JavaTypeHandlers {
@@ -40,62 +39,39 @@ public class JavaTypeHandlers {
 
 	static {
 		try {
-			COMMON_DATA_TYPE_HANDLERS.put("byte", ByteHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Byte.class.getName(),
-					ByteHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("byte", ByteHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Byte.class.getName(), ByteHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("short", ShortHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Short.class.getName(),
-					ShortHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("short", ShortHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Short.class.getName(), ShortHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("char", CharacterHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Character.class.getName(),
-					CharacterHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("char", CharacterHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Character.class.getName(), CharacterHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("int", IntegerHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Integer.class.getName(),
-					IntegerHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("int", IntegerHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Integer.class.getName(), IntegerHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("boolean", BooleanHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Boolean.class.getName(),
-					BooleanHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("boolean", BooleanHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Boolean.class.getName(), BooleanHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("long", LongHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Long.class.getName(),
-					LongHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("long", LongHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Long.class.getName(), LongHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("float", FloatHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Float.class.getName(),
-					FloatHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("float", FloatHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Float.class.getName(), FloatHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("double", DoubleHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put(Double.class.getName(),
-					DoubleHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("double", DoubleHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(Double.class.getName(), DoubleHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("java.util.Date", DateHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put("java.sql.Date", SqlDateHandler.class
-					.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put("java.sql.Timestamp",
-					TimestampHandler.class.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put("java.sql.Time", TimeHandler.class
-					.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("java.util.Date", DateHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("java.sql.Date", SqlDateHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("java.sql.Timestamp", TimestampHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("java.sql.Time", TimeHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put("java.math.BigInteger",
-					BigIntegerHandler.class.newInstance());
-			COMMON_DATA_TYPE_HANDLERS.put("java.math.BigDecimal",
-					BigDecimalHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("java.math.BigInteger", BigIntegerHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put("java.math.BigDecimal", BigDecimalHandler.class.newInstance());
 
-			COMMON_DATA_TYPE_HANDLERS.put(String.class.getName(),
-					StringHandler.class.newInstance());
+			COMMON_DATA_TYPE_HANDLERS.put(String.class.getName(), StringHandler.class.newInstance());
 
 		} catch (InstantiationException e) {
 			log.error("init IDataTypeHandler failed.", e);
@@ -111,15 +87,12 @@ public class JavaTypeHandlers {
 	/**
 	 * 将字符串转换为指定的数据类型。
 	 * 
-	 * @param value
-	 *            要转换的字符串
-	 * @param className
-	 *            要转换成的类型，如int, float等。
+	 * @param value 要转换的字符串
+	 * @param className 要转换成的类型，如int, float等。
 	 * 
 	 */
 	public static Object convertValueToType(String value, String className) {
-		IDataTypeHandler mh = (IDataTypeHandler) COMMON_DATA_TYPE_HANDLERS
-				.get(className);
+		IDataTypeHandler mh = (IDataTypeHandler) COMMON_DATA_TYPE_HANDLERS.get(className);
 
 		if (mh == null) {
 			throw new JRuntimeException("unknown data type :" + className);
@@ -244,7 +217,6 @@ class BooleanHandler implements IDataTypeHandler {
 	}
 }
 
-@SuppressWarnings("unchecked")
 class UnsupportedDataHandler implements IDataTypeHandler {
 
 	private Class fieldType;
@@ -254,6 +226,6 @@ class UnsupportedDataHandler implements IDataTypeHandler {
 	}
 
 	public Object getValue(String fieldValue) {
-		throw new JRuntimeException("unknown data type :" + fieldType);
+		throw new JRuntimeException("Unknown dataType : " + fieldType);
 	}
 }
