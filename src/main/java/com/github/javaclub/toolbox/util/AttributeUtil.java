@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * AttributeUtil 对数据库存储扩展字段的一个处理方法
+ * AttributeUtil 对数据库KV存储扩展字段的一个处理方法
  *
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
  * @version $Id: AttributeUtil.java 2013-7-3 14:38:36 Exp $
