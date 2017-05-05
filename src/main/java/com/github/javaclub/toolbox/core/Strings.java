@@ -1125,6 +1125,10 @@ public final class Strings {
 		return (result.toString());
 	}
 	
+	public final static String format(final String pattern, final Object ... args) {
+		return Messages.format(pattern, args);
+	}
+	
 	public static MapJson createMapJson(String key, String value) {
 		return new MapJson(key, value);
 	}

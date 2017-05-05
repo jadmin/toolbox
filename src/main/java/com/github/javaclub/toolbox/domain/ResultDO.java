@@ -27,31 +27,41 @@ public class ResultDO<T> implements Serializable {
 	private boolean success = false;
 	
 	/**
-	 * 如果返货错误或失败信息，请以"ERROR-XXX-XXX"的格式  
+	 * 返回给请求端的唯一识别码，1-成功，0-失败  
 	 */
-	private String resultCode;
+	private int resultCode;
 	
 	/**
-	 * 错误提示信息 
+	 * 具体的提示信息 
 	 */
-	private String errorMsg;
+	private String message;
 	
 	/**
-	 * 单值返回
+	 * 主要返回数据对象
 	 */
 	private T result;
 	
 	/**
-	 * 多值返回,key为枚举字符串
-	 */
-	private Map<String, Object> models = new HashMap<String, Object>(16);
+     * 额外返回的结果集 
+     */
+    private Map<String, Object> extraResultMap = new HashMap<String, Object>();
+    
+    public Map<String, Object> getExtraResultMap() {
+    	return extraResultMap;
+    }
+    
+    public void addExtraResult(String key, Object extraResult) {
+    	extraResultMap.put(key, extraResult);
+    }
+    
+    public Object getExtraResult(String key) {
+    	return extraResultMap.get(key);
+    }
 
 	public ResultDO() {
-		super();
 	}
 
 	public ResultDO(boolean success) {
-		super();
 		this.success = success;
 	}
 
@@ -59,19 +69,15 @@ public class ResultDO<T> implements Serializable {
 		return success;
 	}
 	
-	public boolean isFailured() {
-		return !success;
-	}
-
 	public void setSuccess(boolean success) {
 		this.success = success;
 	}
 
-	public String getResultCode() {
+	public int getResultCode() {
 		return resultCode;
 	}
 
-	public void setResultCode(String resultCode) {
+	public void setResultCode(int resultCode) {
 		this.resultCode = resultCode;
 	}
 
@@ -83,24 +89,12 @@ public class ResultDO<T> implements Serializable {
 		this.result = value;
 	}
 
-	public Object getModel(String key) {
-		return getModels().get(key);
+	public String getMessage() {
+		return message;
 	}
 
-	public void setModel(String key, Object model) {
-		getModels().put(key, model);
-	}
-
-    public Map<String, Object> getModels() {
-        return models;
-    }
-
-	public String getErrorMsg() {
-		return errorMsg;
-	}
-
-	public void setErrorMsg(String errorMsg) {
-		this.errorMsg = errorMsg;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

@@ -303,16 +303,16 @@ public abstract class Numbers {
 	 * @param str the <code>String</code> to check
 	 * @return <code>true</code> if str contains only unicode numeric
 	 */
-	public static boolean isDigits(String str) {
-		if (!StringUtils.hasLength(str)) {
-			return false;
-		}
-		for (int i = 0; i < str.length(); i++) {
-			if (!Character.isDigit(str.charAt(i))) {
-				return false;
-			}
-		}
-		return true;
+	public static boolean isDigits(String string) {
+		if (null == string || 0 >= string.trim().length()) {
+            return false;
+        }
+        for (int i = 0; i < string.length(); i++) {
+            if (!Character.isDigit(string.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
 	}
 
 	/**
