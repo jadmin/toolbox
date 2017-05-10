@@ -1133,7 +1133,7 @@ public final class Strings {
 		return new MapJson(key, value);
 	}
 	
-	static class MapJson {
+	public static class MapJson {
 		
 		private ConcurrentMap<String, String> nodeMap;
 		

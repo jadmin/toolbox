@@ -17,6 +17,8 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import com.github.javaclub.toolbox.core.Strings;
+
 /**
  * ResourceTest
  *
@@ -67,5 +69,11 @@ public class ResourceTest {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
 		BigDecimal b2 = new BigDecimal(Double.toString(v2));
 		return b1.divide(b2, scale, BigDecimal.ROUND_HALF_UP).floatValue();
+	}
+	
+	@Test
+	public void testStringsCreateMapJson() {
+		String str = Strings.createMapJson("root", "kkk").entry("hi", "Tom").entry("Jet", "merry").toString();
+		System.out.println(str);
 	}
 }
