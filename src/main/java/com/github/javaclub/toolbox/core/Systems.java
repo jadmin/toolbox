@@ -28,7 +28,7 @@ public final class Systems {
 	 * @param params parameter array
 	 */
 	public static void out(String format, Object ... params) {
-		String msg = Messages.format(format, params);
+		String msg = MessageFormatter.format(format, params);
 		System.out.println(msg);
 	}
 	

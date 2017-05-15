@@ -24,7 +24,7 @@ public class MessagesTest {
 
 	@Test
 	public void testFormat() {
-		String target = Messages.format("Hi, {}, This is my mum, {}", "Tom", "CHINA");
+		String target = MessageFormatter.format("Hi, {}, This is my mum, {}", "Tom", "CHINA");
 		String expect = "Hi, Tom, This is my mum, CHINA";
 		assertTrue(target.equals(expect));
 	}
@@ -32,7 +32,7 @@ public class MessagesTest {
 
 	@Test
 	public void testFormat_1() {
-		String target = Messages.format("Hi, Versy {}", "Nice");
+		String target = MessageFormatter.format("Hi, Versy {}", "Nice");
 		String expect = "Hi, Versy Nice";
 		assertTrue(target.equals(expect));
 	}
@@ -49,7 +49,7 @@ public class MessagesTest {
 			list.add(Strings.random(10));
 		}
 		long start = System.currentTimeMillis();
-		Messages.format(sbf.toString(), list.toArray(new String[0]));
+		MessageFormatter.format(sbf.toString(), list.toArray(new String[0]));
 		long end = System.currentTimeMillis();
 		System.out.println("Time Cost => " + (end - start));
 	}

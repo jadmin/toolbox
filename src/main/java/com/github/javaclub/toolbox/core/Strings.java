@@ -1126,7 +1126,7 @@ public final class Strings {
 	}
 	
 	public final static String format(final String pattern, final Object ... args) {
-		return Messages.format(pattern, args);
+		return MessageFormatter.format(pattern, args);
 	}
 	
 	public static MapJson createMapJson(String key, String value) {

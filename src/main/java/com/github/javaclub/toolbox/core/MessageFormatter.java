@@ -38,7 +38,7 @@ import java.util.Map;
  * escape the '}' character. For example,
  * 
  * <pre>
- * Messages.format(&quot;Set \\{} is not equal to {}.&quot;, &quot;1,2&quot;);
+ * MessageFormatter.format(&quot;Set \\{} is not equal to {}.&quot;, &quot;1,2&quot;);
  * </pre>
  * 
  * will return the string "Set {} is not equal to 1,2.".
@@ -47,7 +47,7 @@ import java.util.Map;
  * The escaping behavior just described can be overridden by escaping the escape character '\'. Calling
  * 
  * <pre>
- * Messages.format(&quot;File name is C:\\\\{}.&quot;, &quot;file.zip&quot;);
+ * MessageFormatter.format(&quot;File name is C:\\\\{}.&quot;, &quot;file.zip&quot;);
  * </pre>
  * 
  * will return the string "File name is C:\file.zip".
@@ -59,9 +59,9 @@ import java.util.Map;
  * more details.
  * 
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
- * @version $Id: Messages.java,v 1.2 2011/03/03 03:39:41 gerald.chen Exp $
+ * @version $Id: MessageFormatter.java,v 1.2 2011/03/03 03:39:41 gerald.chen Exp $
  */
-public class Messages {
+public class MessageFormatter {
 
 	static final char DELIM_START = '{';
 	static final char DELIM_STOP = '}';

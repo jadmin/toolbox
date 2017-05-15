@@ -15,7 +15,7 @@ import java.io.FileReader;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import com.github.javaclub.toolbox.core.Messages;
+import com.github.javaclub.toolbox.core.MessageFormatter;
 
 /**
  * 统计java代码行数工具
@@ -101,7 +101,7 @@ public class JavaCodeStatUtil {
 		String path = "E:/workspace/java/seek/gerald-develop/src";
 		long[] a = stat(path);
 		System.out.println(a[0] + a[1] + a[2]);
-		System.out.println(Messages.format("normalLines:{}, commentLines:{}, whiteLines:{}", new Object[] {a[0] , a[1] , a[2]}));
+		System.out.println(MessageFormatter.format("normalLines:{}, commentLines:{}, whiteLines:{}", new Object[] {a[0] , a[1] , a[2]}));
 	}
 
 }

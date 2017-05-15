@@ -53,7 +53,7 @@ public class Log {
 	public static void i(String message, Object[] arr) {
 		File logFile = ensureLogFile();
 		if(null == logFile) return;
-		String info = Messages.format(message, arr);
+		String info = MessageFormatter.format(message, arr);
 		String timePrefix = DateUtil.getFormat(new Date(), timeFormat);
 		FileUtil.writeText(logFile, timePrefix + " - " + info, true);
 	}
