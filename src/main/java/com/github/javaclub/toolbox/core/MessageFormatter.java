@@ -346,6 +346,7 @@ public class MessageFormatter {
 	}
 
 	public static void main(String[] args) {
+		
 		System.out.println(format("hello {}  jkfbds {}", new Object[] {"gerald", "中国"}));
 	}
 
