@@ -941,6 +941,10 @@ public abstract class Numbers {
 		for (int i = 0; i < k.length; i++) {
 			System.out.print(k[i] + " ");
 		}
+		
+		double d = 28;
+		System.out.println(formatPercent(d, -1, -1));
+		System.out.println(formatDouble(d));
 	}
 
 }

@@ -143,7 +143,7 @@ public final class BizObjects {
 		return new RefNode();
 	}
 	
-	static class RefNode {
+	public static class RefNode {
 		
 		public RefNode() { 
 		}

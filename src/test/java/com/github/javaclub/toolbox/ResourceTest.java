@@ -18,6 +18,9 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 import com.github.javaclub.toolbox.core.Strings;
+import com.github.javaclub.toolbox.domain.BizException;
+import com.github.javaclub.toolbox.domain.BizObjects;
+import com.github.javaclub.toolbox.domain.MessageCode;
 
 /**
  * ResourceTest
@@ -34,6 +37,17 @@ public class ResourceTest {
 		p.list(System.out);
 		
 		System.out.println(new Date().getTime());
+	}
+	
+	@Test
+	public void testCCC() {
+		int val = 188;
+		int count = BizObjects.create()
+							.ifFalse(val > 100, new BizException("异常错误信息"))
+							.ifTrue(new Date().getTime() < 10000, new BizException("时间信息错误"))
+							.ifFalse(-2 > 0, MessageCode.PARAMS_NUMBER_SHOULD_POSITIVE)
+							.present(100);
+		System.out.println(count);
 	}
 	
 	@Test
