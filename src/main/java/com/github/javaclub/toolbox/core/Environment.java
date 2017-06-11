@@ -11,7 +11,7 @@ package com.github.javaclub.toolbox.core;
  * Java Environment
  * 
  * @author <a href="mailto:gerald.chen.hz@gmail.com">Gerald Chen</a>
- * @version $Id: Environment.java 2011-7-21 下午07:59:39 Exp $
+ * @version $Id: Environment.java 2011-7-21 19:59:39 Exp $
  */
 public class Environment {
 
