@@ -1133,6 +1133,27 @@ public final class Strings {
 		return new MapJson(key, value);
 	}
 	
+	/**
+	 * 取两个字符串的最长连续公共子串
+	 */
+	public static String gcd(String a, String b) {
+		String max = ""; // 用于存放公共字符串
+		String child = ""; // 存放拆分得到的子字符串
+		String min = a.length() < b.length() ? a : b; // 选取短的字符串做拆分
+		for (int i = 1; i <= min.length(); i++) {
+			for (int j = 0; j < min.length(); j++) {
+				if (j + i <= min.length()) {
+					child = min.substring(j, j + i);
+					if (b.indexOf(child) != -1) {// 如果不等于-1，则表示在str_2里面找到childString
+						max = child;
+					}
+				}
+			}
+		}
+		
+		return max;
+	}
+	
 	public static class MapJson {
 		
 		private ConcurrentMap<String, String> nodeMap;
