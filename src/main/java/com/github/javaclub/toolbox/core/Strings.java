@@ -1004,7 +1004,7 @@ public final class Strings {
         if (list.isEmpty()) {
             return null;
         } 
-        return (String[]) list.toArray(new String [list.size()]);
+        return (String[]) list.toArray(new String[list.size()]);
     }
 	
 	/**
